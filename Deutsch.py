@@ -48,3 +48,5 @@ while a == True:
 
                 print(pronoun[randomPr] + " не " + verb[randomVe]) 
         a = input() == ''
+
+#gonna rewrite this code tbh
