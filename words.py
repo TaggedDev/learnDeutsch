@@ -4,11 +4,11 @@ from googletrans import Translator
 
 # ===START===
 translator = Translator()
-themes = ['Знакомство, прощание, приветствие', 'Семья, родственники', 'Продукты, покупки', 'В ресторане', 'Квартира, мебель', 'Распорядок дня', 'Досуг, хобби, развлечения', 'Работа и профессия', 'Дорога, путешествие', 'Здоровье и самочувствие', 'Одежда', 'Праздники', 'Погода', 'Планы и желания']
+themes = ['Meeting', 'Family', 'Products', 'In the restaurant', 'Furniture', 'Schedule', 'Entertainment', 'Work', 'Road', 'Health', 'Clothes', 'Holidays', 'Weather', 'Plans']
 
-wordsMeeting = ['Привет!', 'Доброе утро', 'Добрый день', 'Добрый вечер', 'Доброй ночи', 'Добро пожаловать', 'До свидания', 'Пока!', 'До завтра', 'Меня зовут', 'Я приехал из России', 'Простите', 'Пожалуйста', 'Спасибо', 'Удачи!', 'Взаимно']
-wordsFamily = ['Семья', 'Родители', 'Мама', 'Папа', 'Сестра', 'Брат', 'Сын', 'Дочь', 'Отец', 'Мать', 'Мальчик', 'Девочка', 'Бабушка', 'Дедушка']
-wordsProducts = []
+wordsMeeting = ['Hello!', 'Good morning', 'Good day', 'Good evening', 'Good night', 'Welcome', 'Goodbye', 'Bye!', 'See you tomorrow!', 'My name is', 'I am from Russia', 'I am sorry', 'Please', 'Thank you', 'Good luck!']
+wordsFamily = ['Family', 'Parents', 'Mom', 'Dad', 'Sister', 'Brother', 'Son', 'Daughter', 'Boy', 'Girl', 'Grandmother', 'Grandfather', 'Children', 'Child', 'Siblings','Husband','Wife']
+wordsProducts = ['Water', 'Food', 'Milk', 'Juice', 'Tea', 'Bread', 'Egg', 'Patato', 'Rice', 'Mushroom', 'Meat', 'Tomato', 'Cucumber', 'Кабачок', 'Carrot', 'Onion', 'Garlic', 'Apple', 'Банан', 'Yogurt', 'Cheeze', 'Salt', 'Sugar']
 wordsRestaurant = []
 wordsFurniture = []
 wordsSchedule = []
@@ -31,7 +31,7 @@ def start():
         counter += 1
 
     print("\n")
-    userChoose = int(input("Введите номер темы: "))
+    userChoose = int(input("Choose the topic: "))
     print("\n")
     
     def question():
@@ -40,22 +40,22 @@ def start():
             length = len(words) - 1
             number = rnd.randint(0, length) # рандомим слово из списка
             
-            print(f'Переведи на немецкий слово: {words[number]}')
+            print(f'Translate the word: the {words[number]}')
             print()
-            userAnswer = input("Перевод: ")
+            userAnswer = input("Type: ")
             print()
                 
-            result = translator.translate(f'{words[number]}', src='ru', dest='de')
+            result = translator.translate(f'the {words[number]}', src='en', dest='de')
             aiAnswer = result.text.casefold()
             userAnswer = userAnswer.casefold()
             
             if userAnswer == aiAnswer:
-                print("Ответ верен!")
+                print("Correct!")
                 print("\n")
             elif userAnswer == 'back':
                 start()
             else:
-                print(f"Неверно! Правильный ответ: {aiAnswer}")
+                print(f"Incorrect! The right answer is: {aiAnswer}")
                 print("\n")
     question()
 
