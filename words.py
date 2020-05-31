@@ -13,7 +13,7 @@ themes = ['Meeting', 'Family', 'Products', 'In the restaurant', 'Furniture', 'Sc
 wordsMeeting = ['Hello', 'Good morning', 'Good afternoon', 'Good evening', 'Good night', 'Welcome', 'Goodbye', 'Bye', 'See you tomorrow', 'My name is', 'I am from Russia', 'I am sorry', 'Please', 'Thanks', 'Good luck']
 wordsFamily = ['Family', 'Parents', 'Mom', 'Dad', 'Sister', 'Brother', 'Son', 'Daughter', 'Boy', 'Girl', 'Grandmother', 'Grandfather', 'Children', 'Child', 'Simblings','Husband','Wife']
 wordsProducts = ['Water', 'Food', 'Milk', 'Juice', 'Tea', 'Bread', 'Egg', 'Patato', 'Rice', 'Mushroom', 'Meat', 'Tomato', 'Cucumber', 'Squash', 'Carrot', 'Onion', 'Garlic', 'Apple', 'Banana', 'Yogurt', 'Cheeze', 'Salt', 'Sugar']
-wordsRestaurant = ['Restaurant', 'to order', 'to eat', 'to drink', 'Appetizer', 'Side dish', 'Dessert', 'to pay', 'Waiter', 'Soup', 'Salad', 'Tea']
+wordsRestaurant = ['Restaurant', 'Order', 'Food', 'Drinks', 'Appetizer', 'Side dish', 'Dessert', 'Waiter', 'Soup', 'Salad', 'Tea']
 wordsFurniture = ['Bed', 'Sofa', 'Chair', 'Table', 'Armchair', 'Carpet', 'Wardrobe', 'House', 'Flat', 'Furniture', 'Window', 'Door', 'Wall', 'Roof', 'Floor', 'Kitchen', 'Living room', 'Canteen', 'Bedroom', 'Toilet', 'Ceiling']
 wordsSchedule = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Week', 'Month', 'Weekends', 'Holidays']
 wordsHobby = []
@@ -25,7 +25,7 @@ wordsHolidays = []
 wordsWeather = []
 wordsPlans = ['Clinic', 'Pharmacy', 'Cinema', 'Theater', 'Zoo', 'Park', 'Aquapark', 'Botanic Garden', 'Planetarium', 'Seaquarium', 'Opera']
 
-wordsDict = {0:wordsMeeting, 1:wordsFamily, 2:wordsProducts, 3:wordsRestaurant, 4:wordsSchedule, 5:wordsHobby, 6:wordsWork, 7:wordsRoad, 8:wordsHealth, 9:wordsClothes, 10:wordsWeather, 11:wordsPlans}
+wordsDict = {0:wordsMeeting, 1:wordsFamily, 2:wordsProducts, 3:wordsRestaurant, 4:wordsFurniture, 5:wordsSchedule, 6:wordsHobby, 7:wordsWork, 8:wordsRoad, 9:wordsHealth, 10:wordsClothes, 11:wordsHolidays, 12:wordsWeather, 13:wordsPlans}
 
 def start():
     counter = 0
