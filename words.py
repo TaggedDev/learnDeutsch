@@ -1,12 +1,16 @@
 import googletrans as gt 
 import random as rnd
+from colorama import Fore, Back, Style
+from colorama import init
 from googletrans import Translator
+
+init()
 
 # ===START===
 translator = Translator()
 themes = ['Meeting', 'Family', 'Products', 'In the restaurant', 'Furniture', 'Schedule', 'Entertainment', 'Work', 'Road', 'Health', 'Clothes', 'Holidays', 'Weather', 'Plans']
 
-wordsMeeting = ['Hello!', 'Good morning', 'Good day', 'Good evening', 'Good night', 'Welcome', 'Goodbye', 'Bye!', 'See you tomorrow!', 'My name is', 'I am from Russia', 'I am sorry', 'Please', 'Thank you', 'Good luck!']
+wordsMeeting = ['Hello', 'Good morning', 'Good afternoon', 'Good evening', 'Good night', 'Welcome', 'Goodbye', 'Bye', 'See you tomorrow', 'My name is', 'I am from Russia', 'I am sorry', 'Please', 'Thanks', 'Good luck']
 wordsFamily = ['Family', 'Parents', 'Mom', 'Dad', 'Sister', 'Brother', 'Son', 'Daughter', 'Boy', 'Girl', 'Grandmother', 'Grandfather', 'Children', 'Child', 'Simblings','Husband','Wife']
 wordsProducts = ['Water', 'Food', 'Milk', 'Juice', 'Tea', 'Bread', 'Egg', 'Patato', 'Rice', 'Mushroom', 'Meat', 'Tomato', 'Cucumber', 'Squash', 'Carrot', 'Onion', 'Garlic', 'Apple', 'Banana', 'Yogurt', 'Cheeze', 'Salt', 'Sugar']
 wordsRestaurant = ['Restaurant', 'to order', 'to eat', 'to drink', 'Appetizer', 'Side dish', 'Dessert', 'to pay', 'Waiter', 'Soup', 'Salad', 'Tea']
@@ -30,9 +34,11 @@ def start():
     for i in themes:
         print(f'{counter} - {i}')
         counter += 1
-
+    
     print("\n")
+    print(Fore.CYAN)
     userChoose = int(input("Choose the topic: "))
+    print(Fore.RESET)
     print("\n")
 
     if userChoose == 0:
@@ -45,32 +51,42 @@ def start():
             number = rnd.randint(0, length) # randoming a word from the list
             
             if nouns == 1:
+                print(Fore.GREEN, Style.BRIGHT)
                 print(f'Translate the word: the {words[number]}')
-                print()
+                print(Fore.BLUE)
                 userAnswer = input("Type: ")
-                print()
+                print(Fore.RESET, Style.NORMAL)
             elif nouns == 0:
+                print(Fore.GREEN, Style.BRIGHT)
                 print(f'Translate the word: {words[number]}')
-                print()
+                print(Fore.BLUE)
                 userAnswer = input("Type: ")
-                print()
+                print(Fore.RESET, Style.NORMAL)
             
             if nouns == 1:
+                print(Fore.CYAN)
                 result = translator.translate(f'the {words[number]}', src='en', dest='de')
+                print(Fore.RESET)
             elif nouns == 0:
+                print(Fore.CYAN)
                 result = translator.translate(f'{words[number]}', src='en', dest='de')
+                print(Fore.RESET)
             aiAnswer = result.text.casefold() # lowercasing the word
             userAnswer = userAnswer.casefold() # lowercasing the answer
 
 
             if userAnswer == aiAnswer:
+                print(Back.GREEN)
                 print("Correct!")
+                print(Back.RESET)
                 print("\n")
             elif userAnswer == 'back':
                 start()
             else:
+                print(Fore.RED, Style.BRIGHT)
                 print(f"Incorrect! The right answer is: {aiAnswer}")
                 print("\n")
+                print(Fore.RESET, Style.NORMAL)
     question()
 
 start()
