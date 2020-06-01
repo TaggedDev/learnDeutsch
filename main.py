@@ -47,7 +47,7 @@ root.resizable(False, False)
 root.geometry('400x600')
 root.title('Deutsch Learning Helper')
 root[ 'bg' ] = '#454545'
-root.iconbitmap( 'E:\!CODE\Deutsch\LearnRU-DE\icon.ico' )
+root.iconbitmap( 'E:\!CODE\Deutsch\LearnRU-DE\Final\icon.ico' )
 
 # === BUTTONS FUNCTIONS ===
 
