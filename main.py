@@ -28,10 +28,12 @@ wordsPlans = ['Clinic', 'Pharmacy', 'Cinema', 'Theater', 'Zoo', 'Park', 'Aquapar
 
 wordsDict = {'MEETING':wordsMeeting, 'FAMILY':wordsFamily, 'PRODUCTS':wordsProducts, 'RESTAURANT':wordsRestaurant, 'FURNITURE':wordsFurniture, 'SCHEDULE':wordsSchedule, 'HOBBY':wordsHobby, 'WORK':wordsWork, 'ROAD':wordsRoad, 'HEALTH':wordsHealth, 'CLOTHES':wordsClothes, 'HOLIDAYS':wordsHolidays, 'WEATHER':wordsWeather, 'PLANS':wordsPlans}
 
-number = rnd.randint(0, len(wordsFamily)-1)
 nouns = 1
+number = 0
 userChosed = 0
 correctAnswerText = ''
+correctAnswerTextAI = ''
+translateWord = 'Press >>> button to start'
 message = StringVar()
 
 
@@ -66,19 +68,49 @@ def checkTheAnswer():
     correctAnswerText = 'Smthing'
 
     if nouns == 1:
-        result = translator.translate(f'the {words[number]}', src='en', dest='de')
+        result = translator.translate(f'the {words[number-1]}', src='en', dest='de')
     elif nouns == 0:
-        result = translator.translate(f'{words[number]}', src='en', dest='de')
+        result = translator.translate(f'{words[number-1]}', src='en', dest='de')
     
     aiAnswer = result.text.casefold() # lowercasing the word
     userAnswer = userAnswer.casefold() # lowercasing the answer
 
     if userAnswer == aiAnswer:
-        correctAnswerText = "Correct!"
-        print(correctAnswerText)
+        correctAnswer.config(text="")
+        correctAnswerAI.config(fg="#168a1c")
+        correctAnswerAI.config(text='Correct!')
     else:
-        correctAnswerText = "Incorrect! The right answer is"
-        
+        correctAnswer.config(text="Incorrect! The right answer is:", fg="#fff")
+        correctAnswerAI.config(text=f"{aiAnswer.upper()}", fg="#c4002b")
+    
+def nextWord():
+    global translateWord
+    global number
+
+    words = wordsDict[userChosed]
+    number = rnd.randint(0, len(words))
+    length = number-1
+    translatedWord = words[length].upper()
+    # RANDOMING A WORD FROM A [USERCHOSED] LIST  AND PUTTING IT IN [TRANSLATEWORD] VAR
+    translateWord.config(text=translatedWord)
+    correctAnswerAI.config(text="")
+    correctAnswer.config(text="")
+    inputTranslate.delete(0, 'end')
+
+def nextWordEnter(event):
+    global translateWord
+    global number
+
+    words = wordsDict[userChosed]
+    number = rnd.randint(0, len(words))
+    length = number-1
+    translatedWord = words[length].upper()
+    # RANDOMING A WORD FROM A [USERCHOSED] LIST  AND PUTTING IT IN [TRANSLATEWORD] VAR
+    translateWord.config(text=translatedWord)
+    correctAnswerAI.config(text="")
+    correctAnswer.config(text="")
+    inputTranslate.delete(0, 'end')
+
 
 
 
@@ -86,12 +118,13 @@ def checkTheAnswer():
 
 navTitle = Label(text="WORDS TRANSLATE & REMEMBER", fg="#919191", bg="#454545", font="Roboto 15", pady="7")
 themesMenu = OptionMenu(root, userChoose, *themes, command=guessTheList)
-translateWord = Label(text=f"{wordsFamily[number].upper()}", fg="#abedff", bg="#454545", font="Roboto 15", pady="7", padx='18',bd="2", relief="solid", width="30")
+translateWord = Label(text=f"{translateWord}", fg="#abedff", bg="#454545", font="Roboto 15", pady="7", padx='18',bd="2", relief="solid", width="30")
 inputTranslate = Entry(fg="#fff", bg="#666666", font="Roboto 15", relief="solid", textvariable=message)
 inputTranslate.focus()
 checkButton = Button( text="Check", font="Roboto 15", bg="#cfcfcf", fg="#404040", activebackground="#454545", activeforeground="#cfcfcf", relief="solid", width="12", command=checkTheAnswer)
-correctAnswer = Label(text=correctAnswerText, fg="#fff", bg="#454545", font="Roboto 15", pady="7", padx='18')
-nextButton = Button( text="►►►", font="20", bg="#cfcfcf", fg="#168a1c", activebackground="#454545", activeforeground="#168a1c", height="1")
+correctAnswer = Label(text=correctAnswerText, fg="#fff", bg="#454545", font="Roboto 15")
+correctAnswerAI = Label(text=correctAnswerTextAI, fg="#fff", bg="#454545", font="Roboto 15", pady="7", padx='18')
+nextButton = Button( text="►►►", font="20", bg="#cfcfcf", fg="#168a1c", activebackground="#454545", activeforeground="#168a1c", height="1", command=nextWord)
 
 navTitle.pack()
 themesMenu.pack()
@@ -100,7 +133,10 @@ themesMenu['menu'].config(font='Roboto 15', bg='white')
 translateWord.pack(pady="13")
 inputTranslate.pack(pady="60")
 checkButton.pack()
-correctAnswer.pack(pady="22")
-nextButton.pack()
+correctAnswer.pack()
+correctAnswerAI.pack(pady="5")
+nextButton.pack(pady="10")
+
+root.bind('<Return>', nextWordEnter)
 
 root.mainloop()
