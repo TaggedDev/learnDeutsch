@@ -34,16 +34,17 @@ userChosed = 0
 correctAnswerText = ''
 correctAnswerTextAI = ''
 translateWord = 'Press >>> button to start'
+
 message = StringVar()
 
 
 userChoose = StringVar(root) # need for optionmenu work
-userChoose.set("MEETING")
+userChoose.set("- - - - - - - - - - - - - -")
 
 # BEGIN GUI
 
 root.resizable(False, False)
-root.geometry('400x500')
+root.geometry('400x600')
 root.title('Deutsch Learning Helper')
 root[ 'bg' ] = '#454545'
 root.iconbitmap( 'E:\!CODE\Deutsch\LearnRU-DE\icon.ico' )
@@ -61,56 +62,54 @@ def guessTheList(userList):
         userChosed = userList
 
 def checkTheAnswer():  
-    global correctAnswerText
     words = wordsDict[userChosed]
     userAnswer = message.get()
-
-    correctAnswerText = 'Smthing'
 
     if nouns == 1:
         result = translator.translate(f'the {words[number-1]}', src='en', dest='de')
     elif nouns == 0:
         result = translator.translate(f'{words[number-1]}', src='en', dest='de')
     
-    aiAnswer = result.text.casefold() # lowercasing the word
-    userAnswer = userAnswer.casefold() # lowercasing the answer
-
-    if userAnswer == aiAnswer:
+    if result.text.casefold() == userAnswer.casefold(): # COMPARING THE LOWERCASED ANSWERS
         correctAnswer.config(text="")
         correctAnswerAI.config(fg="#168a1c")
         correctAnswerAI.config(text='Correct!')
     else:
         correctAnswer.config(text="Incorrect! The right answer is:", fg="#fff")
-        correctAnswerAI.config(text=f"{aiAnswer.upper()}", fg="#c4002b")
+        correctAnswerAI.config(text=f"{result.text.upper()}", fg="#c4002b")
     
 def nextWord():
     global translateWord
     global number
 
-    words = wordsDict[userChosed]
-    number = rnd.randint(0, len(words))
-    length = number-1
-    translatedWord = words[length].upper()
-    # RANDOMING A WORD FROM A [USERCHOSED] LIST  AND PUTTING IT IN [TRANSLATEWORD] VAR
-    translateWord.config(text=translatedWord)
-    correctAnswerAI.config(text="")
-    correctAnswer.config(text="")
-    inputTranslate.delete(0, 'end')
+    try:
+        words = wordsDict[userChosed]
+        number = rnd.randint(0, len(words))
+        length = number-1
+        # RANDOMING A WORD FROM A [USERCHOSED] LIST  AND PUTTING IT IN [TRANSLATEWORD] VAR
+        translateWord.config(text=words[length].upper())
+        correctAnswerAI.config(text="")
+        correctAnswer.config(text="")
+        inputTranslate.delete(0, 'end')
+    except:
+        translateWord.config(text="CHOOSE THE (DIFFERENT) THEME")
 
-def nextWordEnter(event):
+
+def nextWordEnter(event): # ON ENTER PRESSED SKIPPING THE WORD
     global translateWord
     global number
 
-    words = wordsDict[userChosed]
-    number = rnd.randint(0, len(words))
-    length = number-1
-    translatedWord = words[length].upper()
-    # RANDOMING A WORD FROM A [USERCHOSED] LIST  AND PUTTING IT IN [TRANSLATEWORD] VAR
-    translateWord.config(text=translatedWord)
-    correctAnswerAI.config(text="")
-    correctAnswer.config(text="")
-    inputTranslate.delete(0, 'end')
-
+    try:
+        words = wordsDict[userChosed]
+        number = rnd.randint(0, len(words))
+        length = number-1
+        # RANDOMING A WORD FROM A [USERCHOSED] LIST  AND PUTTING IT IN [TRANSLATEWORD] VAR
+        translateWord.config(text=words[length].upper())
+        correctAnswerAI.config(text="")
+        correctAnswer.config(text="")
+        inputTranslate.delete(0, 'end')
+    except:
+        translateWord.config(text="CHOOSE THE (DIFFERENT) THEME")
 
 
 
@@ -126,8 +125,8 @@ correctAnswer = Label(text=correctAnswerText, fg="#fff", bg="#454545", font="Rob
 correctAnswerAI = Label(text=correctAnswerTextAI, fg="#fff", bg="#454545", font="Roboto 15", pady="7", padx='18')
 nextButton = Button( text="►►►", font="20", bg="#cfcfcf", fg="#168a1c", activebackground="#454545", activeforeground="#168a1c", height="1", command=nextWord)
 
-navTitle.pack()
-themesMenu.pack()
+navTitle.pack(pady="5")
+themesMenu.pack(pady="10")
 themesMenu.config(font='Roboto 12', bg="#cfcfcf", fg="#000", activebackground="#454545", activeforeground="#fff", width="15")
 themesMenu['menu'].config(font='Roboto 15', bg='white')
 translateWord.pack(pady="13")
