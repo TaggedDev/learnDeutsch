@@ -20,10 +20,10 @@ class Main(Frame):
     def init_main(self):
         toolbar = Frame(bg='#757575', bd=2)
         toolbar.pack(side="top", fill="x")
-        self.translateImage = PhotoImage(file="ico.gif")
+        self.translateImage = PhotoImage(file="translate.gif")
         translateButton = Button(toolbar, text="Nouns translator", command=self.openTranslate, bg="#757575", bd=0, compound=TOP, image=self.translateImage)
         translateButton.pack(side=LEFT)
-        self.verbImage = PhotoImage(file="ico.gif")
+        self.verbImage = PhotoImage(file="verb.gif")
         verbButton = Button(toolbar, text="Verbs conjugator", command=self.openVerb, bg="#757575", bd=0, compound=TOP, image=self.verbImage)
         verbButton.pack(side=LEFT)
 
@@ -393,7 +393,7 @@ class Verbs(Toplevel):
         # GUI
 
         verbTitle = Label(self, text="VERBS CONJUGATION", fg="#919191", bg="#454545", font="Roboto 15", pady="7")
-        verbLabel = Label(self, text="PRESS ►►► BUTTON TO START", fg="#fff", bg="#666666", font="Roboto 15", width='30', height='1')
+        verbLabel = Label(self, text="PRESS ►►► BUTTON TO START", fg="#fff", bg="#666666", font="Roboto 15", width='40', height='1')
         verbEntry = Entry(self, fg="#fff", bg="#666666", font="Roboto 15", relief="solid", textvariable=message)
         verbCheckBTN = Button(self, text="Check", font="Roboto 15", bg="#cfcfcf", fg="#404040", activebackground="#454545", activeforeground="#cfcfcf", relief="solid", width="12", command=CheckVerb)
         correctAnswer = Label(self, text=correctAnswerText, fg="#fff", bg="#454545", font="Roboto 15")
